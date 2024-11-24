@@ -30,6 +30,33 @@ functions:
     environment:
       TABLE_NAME: ${self:provider.environment.PRODUCTO_TABLE}
 
+  deleteProducto:
+    handler: producto/handler_delete_producto.lambda_handler
+    events:
+      - http:
+          path: producto/delete
+          method: delete
+    environment:
+      TABLE_NAME: ${self:provider.environment.PRODUCTO_TABLE}
+
+  listProductos:
+    handler: producto/handler_list_productos.lambda_handler
+    events:
+      - http:
+          path: producto/list
+          method: get
+    environment:
+      TABLE_NAME: ${self:provider.environment.PRODUCTO_TABLE}
+
+  updateProducto:
+    handler: producto/handler_update_producto.lambda_handler
+    events:
+      - http:
+          path: producto/update
+          method: patch
+    environment:
+      TABLE_NAME: ${self:provider.environment.PRODUCTO_TABLE}
+
 resources:
   Resources:
     ProductosDynamoDbTable:
